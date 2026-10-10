@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Chinmay, With Love ♡</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f5ecdf;
+  color:#692c3d;
+  font-family:Georgia,serif;
+  text-align:center;
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  padding:30px 18px;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.screen.active{display:flex}
+
+.card{
+  width:min(100%,570px);
+  padding:25px;
+  border:1px solid #c4a064;
+  background:#fffaf1;
+  border-radius:15px;
+  box-shadow:0 8px 30px #60253615;
+}
+
+h1{
+  font-size:clamp(30px,8vw,48px);
+  font-weight:normal;
+}
+
+h2{font-weight:normal}
+
+p{line-height:1.8}
+
+button{
+  background:#702a40;
+  color:#fff8ed;
+  border:1px solid #c4a064;
+  padding:12px 19px;
+  margin:7px;
+  border-radius:25px;
+  font-family:Georgia,serif;
+  font-size:15px;
+  cursor:pointer;
+}
+
+button:active{transform:scale(.96)}
+
+.small{
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.arena{
+  width:100%;
+  height:300px;
+  position:relative;
+  overflow:hidden;
+  background:#f8efdf;
+  border:1px solid #c4a064;
+  border-radius:12px;
+  touch-action:manipulation;
+}
+
+.target{
+  position:absolute;
+  background:none;
+  border:0;
+  padding:0;
+  font-size:30px;
+  margin:0;
+}
+
+#basket{
+  position:absolute;
+  bottom:5px;
+  left:40%;
+  font-size:35px;
+  transition:left .1s;
+}
+
+.flower{
+  font-size:40px;
+  cursor:pointer;
+  padding:5px;
+}
+
+.envelopes{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.envelope{
+  font-size:40px;
+  background:none;
+  color:#692c3d;
+  border:0;
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.photo-frame{
+  min-height:140px;
+  border:1px solid #c4a064;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+  background:#f5ecdf;
+}
+
+.photo-frame img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+input{
+  padding:12px;
+  border:1px solid #c4a064;
+  border-radius:8px;
+  font-family:Georgia,serif;
+}
+
+/* OUR SONG PLAYER */
+
+.music-card{
+  width:min(100%,570px);
+  margin:18px auto;
+  padding:20px;
+  border:1px solid #c4a064;
+  border-radius:15px;
+  background:#fff8ed;
+  box-shadow:0 5px 20px #692c3d12;
+}
+
+.music-heart{
+  font-size:35px;
+  animation:heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+
+.music-label{
+  font-size:10px;
+  letter-spacing:3px;
+  color:#a17a42;
+}
+
+.music-title{
+  font-size:22px;
+  margin:10px 0;
+}
+
+.music-note{
+  font-size:12px;
+  font-style:italic;
+  color:#916878;
+}
+
+#youtubePlayer{
+  margin-top:15px;
+}
+
+#youtubePlayer iframe{
+  width:100%;
+  max-width:360px;
+  height:203px;
+  border:0;
+  border-radius:10px;
+}
+
+@media(max-width:400px){
+  .card{padding:18px}
+  #youtubePlayer iframe{height:190px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- OUR SONG -->
+<div class="music-card">
+  <div class="music-heart">♡</div>
+  <div class="music-label">OUR LITTLE LOVE SONG</div>
+  <h2 class="music-title">I Wanna Be Yours 🎶</h2>
+
+  <p>
+    Because every love song reminds me
+    of a little piece of us.
+  </p>
+
+  <button onclick="playOurSong()" id="musicButton">
+    ▶ Play Our Song
+  </button>
+
+  <div id="youtubePlayer"></div>
+
+  <p class="music-note">
+    Just you, me, and our little world ♡
+  </p>
+</div>
+
+<!-- 1. WELCOME -->
+<section class="screen active" id="s0">
+<div class="card">
+<div style="font-size:55px">🌹</div>
+<div class="small">A LITTLE WORLD MADE FOR YOU</div>
+<h1>Hey, Chinmay ♡</h1>
+
+<p>
+To my favourite human, my bubu,
+my happiness, and the boy who has
+a very special place in my heart.
+</p>
+
+<p>
+I've hidden little surprises for you.
+But first, you'll have to earn your
+way through them!
+</p>
+
+<p><i>Ready for your adventure, baby?</i></p>
+
+<button onclick="go(1)">Open Your Surprise ✉</button>
+</div>
+</section>
+
+<!-- 2. COUNTDOWN -->
+<section class="screen" id="s1">
+<div class="card">
+<h1>For My Bubu ♡</h1>
+<p>Your birthday is almost here!</p>
+<h2 id="countdown">Counting the moments...</h2>
+
+<p>
+Every second is one second closer
+to celebrating YOU.
+</p>
+
+<button onclick="go(2)">Start Our First Game →</button>
+</div>
+</section>
+
+<!-- 3. CUPID -->
+<section class="screen" id="s2">
+<div class="card">
+<h1>💘 Cupid's Love Shooter</h1>
+
+<p>
+Tap the moving hearts before time runs out!
+Score 12 points to win.
+</p>
+
+<h2>
+Score: <span id="shootScore">0</span>
+|
+Time: <span id="shootTime">20</span>s
+</h2>
+
+<div class="arena" id="shootArena"></div>
+<p id="shootMsg"></p>
+
+<button onclick="startShoot()">Start Game</button>
+<button onclick="go(3)">Continue →</button>
+</div>
+</section>
+
+<!-- 4. HEART CATCHER -->
+<section class="screen" id="s3">
+<div class="card">
+<h1>💗 Catch My Love</h1>
+
+<p>
+Move your basket and catch the falling hearts.
+Get 10 to win!
+</p>
+
+<h2>Score: <span id="catchScore">0</span></h2>
+
+<div class="arena" id="catchArena">
+<div id="basket">🧺</div>
+</div>
+
+<button onclick="moveBasket(-12)">← Move Left</button>
+<button onclick="moveBasket(12)">Move Right →</button>
+
+<p id="catchMsg"></p>
+
+<button onclick="startCatch()">Start Game</button>
+<button onclick="go(4)">Continue →</button>
+</div>
+</section>
+
+<!-- 5. ENVELOPE GAME -->
+<section class="screen" id="s4">
+<div class="card">
+<h1>💌 Kiss the Right Envelope</h1>
+
+<p>
+One envelope hides a kiss from me.
+Choose wisely, bubu!
+</p>
+
+<div class="envelopes" id="envelopes"></div>
+<p id="envMsg"></p>
+
+<button onclick="makeEnvelopes()">Shuffle Envelopes</button>
+<button onclick="go(5)">Continue →</button>
+</div>
+</section>
+
+<!-- 6. ROSE GARDEN -->
+<section class="screen" id="s5">
+<div class="card">
+<h1>🌹 Our Little Rose Garden</h1>
+
+<p>Tap 12 flowers to collect all your kisses.</p>
+
+<h2>Flowers: <span id="roseScore">0</span>/12</h2>
+
+<div id="garden"></div>
+<p id="roseMsg"></p>
+
+<button onclick="makeGarden()">Plant Flowers Again</button>
+<button onclick="go(6)">Continue →</button>
+</div>
+</section>
+
+<!-- 7. RIBBON PUZZLE -->
+<section class="screen" id="s6">
+<div class="card">
+<h1>🎁 Untie My Ribbon</h1>
+
+<p>
+Your present is locked!
+Solve the little puzzle to open it.
+</p>
+
+<p>What is 3 × 4 + 2?</p>
+
+<input id="answer" type="number" placeholder="Your answer">
+
+<br>
+
+<button onclick="solve()">Unlock My Gift 🎀</button>
+<p id="puzzleMsg"></p>
+
+<button onclick="go(7)">Continue →</button>
+</div>
+</section>
+
+<!-- 8. SCRAPBOOK -->
+<section class="screen" id="s7">
+<div class="card">
+<h1>📸 Our Little Scrapbook</h1>
+
+<p>
+Five spaces for five favourite memories.
+Choose your photos below to put them in the frames.
+</p>
+
+<input type="file" id="photos" accept="image/*" multiple>
+
+<div class="photo-grid" id="photoGrid">
+<div class="photo-frame">Memory 1 ♡</div>
+<div class="photo-frame">Memory 2 ♡</div>
+<div class="photo-frame">Memory 3 ♡</div>
+<div class="photo-frame">Memory 4 ♡</div>
+<div class="photo-frame">Memory 5 ♡</div>
+</div>
+
+<p>
+Every picture holds a little piece of my heart.
+</p>
+
+<button onclick="go(8)">One Last Challenge →</button>
+</div>
+</section>
+
+<!-- 9. BOSS BATTLE -->
+<section class="screen" id="s8">
+<div class="card">
+<h1>👑 Birthday Boss Battle</h1>
+
+<p>Final challenge, Chinmay! Complete all three trials.</p>
+
+<p id="bossQuestion">
+Trial 1: Tap the button to begin.
+</p>
+
+<button onclick="boss()">Complete Trial ✨</button>
+<p id="bossMsg"></p>
+</div>
+</section>
+
+<!-- 10. FINAL BIRTHDAY MESSAGE -->
+<section class="screen" id="s9">
+<div class="card">
+<div style="font-size:55px">🎂💗🎉</div>
+
+<h1>Happy Birthday, Chinmay!</h1>
+
+<p>My bubu, my love, my favourite person.</p>
+
+<p>
+I hope today reminds you how loved,
+cherished, and special you are.
+</p>
+
+<p>
+Thank you for being part of my world.
+No game could ever measure how much
+you mean to me.
+</p>
+
+<h2>Forever your biggest fan ♡</h2>
+
+<p>With all my love, always.</p>
+
+<button onclick="go(0)">Play Again ↻</button>
+</div>
+</section>
+
+<script>
+
+/* SONG PLAYER */
+
+function playOurSong(){
+  const player=document.getElementById("youtubePlayer");
+
+  player.innerHTML=`
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/JE-FUZpic2E?autoplay=1"
+      title="I Wanna Be Yours"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+
+  document.getElementById("musicButton").textContent=
+    "♪ Our Song Is Here ♡";
+}
+
+/* NAVIGATION */
+
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.classList.remove('active');
+  });
+
+  document.getElementById('s'+n).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* BIRTHDAY COUNTDOWN */
+
+function updateCountdown(){
+  const target=new Date('2026-10-12T00:00:00+05:30').getTime();
+  const diff=target-Date.now();
+
+  if(diff<=0){
+    document.getElementById('countdown').textContent=
+      "It's your birthday, Bubu! 🎂";
+    return;
+  }
+
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff%86400000/3600000);
+  const m=Math.floor(diff%3600000/60000);
+  const s=Math.floor(diff%60000/1000);
+
+  document.getElementById('countdown').textContent=
+    `${d} days ${h} hours ${m} minutes ${s} seconds`;
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* CUPID LOVE SHOOTER */
+
+let shootTimer,shootInterval,shootScore=0,shootTime=20;
+
+function startShoot(){
+  clearInterval(shootTimer);
+  clearInterval(shootInterval);
+
+  const arena=document.getElementById('shootArena');
+  arena.innerHTML='';
+
+  shootScore=0;
+  shootTime=20;
+
+  document.getElementById('shootMsg').textContent='';
+  document.getElementById('shootScore').textContent=0;
+  document.getElementById('shootTime').textContent=shootTime;
+
+  shootInterval=setInterval(()=>{
+    if(shootTime<=0){
+      clearInterval(shootInterval);
+      clearInterval(shootTimer);
+
+      document.getElementById('shootMsg').textContent=
+        shootScore>=12
+        ?'Cupid approves your love! 💘'
+        :'Try again, my love! 💗';
+
+      return;
+    }
+
+    shootTime--;
+    document.getElementById('shootTime').textContent=shootTime;
+  },1000);
+
+  shootTimer=setInterval(()=>{
+    if(shootTime<=0)return;
+
+    const b=document.createElement('button');
+    b.className='target';
+    b.textContent=Math.random()<.2?'💛':'💗';
+    b.style.left=Math.random()*85+'%';
+    b.style.top=Math.random()*80+'%';
+
+    b.onclick=()=>{
+      shootScore++;
+      document.getElementById('shootScore').textContent=shootScore;
+      b.remove();
+
+      if(shootScore>=12){
+        clearInterval(shootInterval);
+        clearInterval(shootTimer);
+        document.getElementById('shootMsg').textContent=
+          'You caught all my love! 💋';
+      }
+    };
+
+    arena.appendChild(b);
+    setTimeout(()=>b.remove(),1400);
+  },650);
+}
+
+/* HEART CATCHER */
+
+let catchScore=0,basketPos=40,catchTimer;
+
+function moveBasket(n){
+  basketPos=Math.max(0,Math.min(80,basketPos+n));
+  document.getElementById('basket').style.left=basketPos+'%';
+}
+
+function startCatch(){
+  clearInterval(catchTimer);
+
+  catchScore=0;
+  document.getElementById('catchScore').textContent=0;
+  document.getElementById('catchMsg').textContent='';
+
+  const arena=document.getElementById('catchArena');
+  arena.querySelectorAll('.target').forEach(x=>x.remove());
+
+  catchTimer=setInterval(()=>{
+    if(catchScore>=10){
+      clearInterval(catchTimer);
+      return;
+    }
+
+    const h=document.createElement('button');
+    h.className='target';
+    h.textContent='💗';
+    h.style.left=Math.random()*85+'%';
+    h.style.top='0px';
+    arena.appendChild(h);
+
+    let y=0;
+
+    const fall=setInterval(()=>{
+      y+=5;
+      h.style.top=y+'px';
+
+      const hr=h.getBoundingClientRect();
+      const br=document.getElementById('basket').getBoundingClientRect();
+
+      if(hr.bottom>=br.top && hr.left<br.right && hr.right>br.left){
+        catchScore++;
+        document.getElementById('catchScore').textContent=catchScore;
+        h.remove();
+        clearInterval(fall);
+
+        if(catchScore>=10){
+          document.getElementById('catchMsg').textContent=
+            'You caught my heart! 💗';
+        }
+      }else if(y>280){
+        h.remove();
+        clearInterval(fall);
+      }
+    },80);
+  },550);
+}
+
+/* ENVELOPE GAME */
+
+let correctEnvelope=0;
+
+function makeEnvelopes(){
+  const area=document.getElementById('envelopes');
+  area.innerHTML='';
+  document.getElementById('envMsg').textContent='';
+
+  correctEnvelope=Math.floor(Math.random()*3);
+
+  for(let i=0;i<3;i++){
+    const b=document.createElement('button');
+    b.className='envelope';
+    b.textContent='💌';
+
+    b.onclick=()=>{
+      document.getElementById('envMsg').textContent=
+        i===correctEnvelope
+        ?'You found my kiss! Muahhh 💋'
+        :'Oops, not this one, bubu! Try again 💗';
+    };
+
+    area.appendChild(b);
+  }
+}
+
+makeEnvelopes();
+
+/* ROSE GARDEN */
+
+let roseScore=0;
+
+function makeGarden(){
+  const garden=document.getElementById('garden');
+  garden.innerHTML='';
+
+  roseScore=0;
+  document.getElementById('roseScore').textContent=0;
+  document.getElementById('roseMsg').textContent='';
+
+  for(let i=0;i<12;i++){
+    const f=document.createElement('span');
+    f.className='flower';
+    f.textContent='🌹';
+
+    f.onclick=()=>{
+      if(f.textContent==='🌹'){
+        f.textContent='💋';
+        roseScore++;
+
+        document.getElementById('roseScore').textContent=roseScore;
+
+        if(roseScore===12){
+          document.getElementById('roseMsg').textContent=
+            'A dozen kisses, all for you! 💋';
+        }
+      }
+    };
+
+    garden.appendChild(f);
+  }
+}
+
+makeGarden();
+
+/* GIFT PUZZLE */
+
+function solve(){
+  if(document.getElementById('answer').value==='14'){
+    document.getElementById('puzzleMsg').textContent=
+      'Gift unlocked! Your present is all my love 🎁';
+  }else{
+    document.getElementById('puzzleMsg').textContent=
+      'Try again, bubu! Think carefully 💗';
+  }
+}
+
+/* SCRAPBOOK PHOTO SELECTOR */
+
+document.getElementById('photos').addEventListener('change',function(){
+  const files=Array.from(this.files).slice(0,5);
+  const frames=document.querySelectorAll('.photo-frame');
+
+  files.forEach((file,i)=>{
+    const reader=new FileReader();
+
+    reader.onload=e=>{
+      frames[i].innerHTML='';
+
+      const img=document.createElement('img');
+      img.src=e.target.result;
+      img.alt='Our memory '+(i+1);
+
+      frames[i].appendChild(img);
+    };
+
+    reader.readAsDataURL(file);
+  });
+});
+
+/* BIRTHDAY BOSS BATTLE */
+
+let bossStep=0;
+
+function boss(){
+  bossStep++;
+
+  if(bossStep===1){
+    document.getElementById('bossQuestion').textContent=
+      'Trial 2: Say “I love you, Chinmay!” out loud.';
+  }
+
+  if(bossStep===2){
+    document.getElementById('bossQuestion').textContent=
+      'Trial 3: Send your girl the biggest virtual hug!';
+  }
+
+  if(bossStep>=3){
+    go(9);
+    return;
+  }
+
+  document.getElementById('bossMsg').textContent=
+    'Trial completed! ✨';
+}
+
+</script>
+</body>
+</html>
